@@ -1,5 +1,5 @@
 # learning javascript
-Javascript practice exercises and solutions.
+Javascript practice exercises and solutions.  
 This collection of tasks helps me better understand javascript. hope it will be useful for you too.
 
 ---
