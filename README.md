@@ -4,7 +4,7 @@ This collection of tasks helps me better understand javascript. hope it will be 
 
 ---
 
-###### 1. Get the maximum sum of hourglass.
+###### 1. Get the maximum sum of hourglass (from hackerrank).
 Given a 6x6 2D array.
 ```javascript
 const arr = [
@@ -60,6 +60,70 @@ function getHourglassMaxSum(arr) {
     }
   }
   return maxSum;
+}
+```
+</p>
+</details>
+
+---
+###### 2. Dynamic Array (from hackerrank).
+- Declare a 2-dimensional array, arr, of n empty arrays. All arrays are zero indexed.
+- Declare an integer, lastAnswer, and initialize it to 0.
+- There are 2 types of queries, given as an array of strings for you to parse:  
+    - Query: 1 x y
+        1. let index = ((x ^ lastAnswer) % n)  
+        2. append the integer y to arr[index]
+    - Query: 2 x y  
+        1. let index = ((x ^ lastAnswer) % n)  
+        2. assign the value arr[index][y % arr.lenght] to lastAnswer  
+        3. store the new value of lastAnswer to an answers array
+
+Function Description:  
+Complete the dynamicArray function below.
+dynamicArray has the following parameters:
+- int n: the number of empty arrays to initialize in arr
+- string queries[q]: query strings that contain 3 space-separated integers
+  
+Returns:  
+int[]: the results of each type 2 query in the order they are presented
+
+Input Format:  
+The first line contains two space-separated integers, n, the size of arr to create, and q, the number of queries, respectively. Each of the  subsequent lines contains a query string, queries[i].
+
+Constraints:  
+1 <= n, q <= 10^5  
+0 <= x, y <= 10^9  
+It is guaranteed that query type 2 will never query an empty array or index.
+
+<details><summary><b>Solution</b></summary>
+<p>
+
+```javascript
+function dynamicArray(n, queries) {
+  // Declare a 2-dimensional array of n empty arrays
+  const arr = [];
+  for (let i = 0; i < n; i++) {
+    arr[i] = []
+  }
+  
+  let lastAnswer = 0;
+  const answers = []; // The function returns this array as a solution
+
+  // loop through the queries
+  for (let i = 0; i < queries.length; i++) {
+    let x = queries[i][1]; // Get value of x
+    let y = queries[i][2]; // Get value of y
+    let index = (x ^ lastAnswer) % n;
+
+  // Check the statesments 1 or 2  
+    if (queries[i][0] == 1) {
+      arr[index].push(y)
+    } else if (queries[i][0] == 2) {
+      lastAnswer = arr[index][y % arr[index].length];
+      answers.push(lastAnswer);
+    }
+  }
+  return answers;
 }
 ```
 </p>
