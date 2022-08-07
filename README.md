@@ -4,7 +4,7 @@ This collection of tasks helps me better understand javascript. hope it will be 
 
 ---
 
-###### 1. Get the maximum sum of hourglass (from hackerrank).
+### 1. Get the maximum sum of hourglass (from hackerrank).
 Given a 6x6 2D array.
 ```javascript
 const arr = [
@@ -66,7 +66,7 @@ function getHourglassMaxSum(arr) {
 </details>
 
 ---
-###### 2. Dynamic Array (from hackerrank).
+### 2. Dynamic Array (from hackerrank).
 - Declare a 2-dimensional array, arr, of n empty arrays. All arrays are zero indexed.
 - Declare an integer, lastAnswer, and initialize it to 0.
 - There are 2 types of queries, given as an array of strings for you to parse:  
