@@ -148,7 +148,7 @@ sayHi();
 - C: `ReferenceError` and `21`
 - D: `undefined` and `ReferenceError`
 
-<details><summary><b>Answer</b></summary>
+<details><summary><b>Solution</b></summary>
 <p>
 
 #### Solution: D
