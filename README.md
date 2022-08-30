@@ -129,6 +129,7 @@ function dynamicArray(n, queries) {
 </p>
 </details>
 
+---
 #### 3. What's the output?
 
 ```javascript
@@ -159,6 +160,7 @@ Variables with the `let` keyword (and `const`) are hoisted, but unlike `var`, do
 </p>
 </details>
 
+---
 #### 4. What's the output?
 
 ```javascript
@@ -187,6 +189,7 @@ In the second loop, the variable `i` was declared using the `let` keyword: varia
 </p>
 </details>
 
+---
 #### 5. What's the output?
 
 ```javascript
@@ -221,6 +224,7 @@ There is no value `radius` on that object, which returns `NaN`.
 </p>
 </details>
 
+---
 #### 6. What's the output?
 
 ```javascript
@@ -244,6 +248,7 @@ The string `'Lydia'` is a truthy value. What we're actually asking, is "is this 
 </p>
 </details>
 
+---
 #### 7. Filter unique array values
 You have an array `arr`  
 Create a function `unique(arr)` that returns an array with unique items of arr.
@@ -287,6 +292,7 @@ function unique(arr) {
 
 </details>
 
+---
 #### 8. Filter anagrams
 (Anagrams)[https://en.wikipedia.org/wiki/Anagram] are words that have the same number of same letters, but in different order.  
 For example:  
@@ -342,3 +348,5 @@ function aclean(arr) {
 ```
 
 </details>
+
+---
