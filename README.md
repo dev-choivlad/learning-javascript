@@ -175,10 +175,10 @@ for (let i = 0; i < 3; i++) {
 - B: `0 1 2` and `3 3 3`
 - C: `3 3 3` and `0 1 2`
 
-<details><summary><b>Answer</b></summary>
+<details><summary><b>Solution</b></summary>
 <p>
 
-#### Solution: C
+#### answer: C
 
 Because of the event queue in JavaScript, the `setTimeout` callback function is called _after_ the loop has been executed. Since the variable `i` in the first loop was declared using the `var` keyword, this value was global. During the loop, we incremented the value of `i` by `1` each time, using the unary operator `++`. By the time the `setTimeout` callback function was invoked, `i` was equal to `3` in the first example.
 
@@ -207,10 +207,10 @@ console.log(shape.perimeter());
 - C: `20` and `63`
 - D: `NaN` and `63`
 
-<details><summary><b>Answer</b></summary>
+<details><summary><b>Solution</b></summary>
 <p>
 
-#### Solution: B
+#### answer: B
 
 Note that the value of `diameter` is a regular function, whereas the value of `perimeter` is an arrow function.
 
@@ -232,14 +232,113 @@ There is no value `radius` on that object, which returns `NaN`.
 - B: `false` and `NaN`
 - C: `false` and `false`
 
-<details><summary><b>Answer</b></summary>
+<details><summary><b>Solution</b></summary>
 <p>
 
-#### Solution: A
+#### answer: A
 
 The unary plus tries to convert an operand to a number. `true` is `1`, and `false` is `0`.
 
 The string `'Lydia'` is a truthy value. What we're actually asking, is "is this truthy value falsy?". This returns `false`.
 
 </p>
+</details>
+
+#### 7. Filter unique array values
+You have an array `arr`  
+Create a function `unique(arr)` that returns an array with unique items of arr.
+```javascript
+const arr = ["gimme", "gimme", "gimme", "a", "man", "after", "midnight"];
+console.log(unique(arr)) // ["gimme", "a", "man", "after", "midnight"]
+```
+<details><summary><b>Solution #1</b></summary>
+
+For each item we’ll check if the resulting array already has that item.
+If it is so, then ignore, otherwise add to results.
+
+```javascript
+function unique(arr) {
+  let result = [];
+
+  for (let str of arr) {
+    if (!result.includes(str)) {
+      result.push(str);
+    }
+  }
+
+  return result;
+}
+```
+
+The code works, but there’s a potential performance problem in it. The method `result.includes(str)` internally walks the array `result` and compares each element against `str` to find the match.  
+So if `arr.length` is `10000` we’ll have something like `10000*10000 = 100 millions` of comparisons. That’s a lot. So the solution is only good for small arrays.
+
+</details>
+
+<details><summary><b>Solution #2</b></summary>
+
+Use `Set` to store unique values.
+
+```javascript
+function unique(arr) {
+  return Array.from(new Set(arr));
+}
+```
+
+</details>
+
+#### 8. Filter anagrams
+(Anagrams)[https://en.wikipedia.org/wiki/Anagram] are words that have the same number of same letters, but in different order.  
+For example:  
+`nap - pan`,
+`ear - are - era`
+`cheaters - hectares - teachers`.  
+
+Create a function `aclean(arr)` that returns an array cleaned from anagrams.
+
+```javascript
+const arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+console.log(aclean(arr)) // "nap,teachers,ear" or "PAN,cheaters,era"
+```
+
+<details><summary><b>Solution #1</b></summary>
+
+Use `Map` to store sorted rows as keys in Map collection.  
+To find all anagrams, let’s split every word to letters and sort them. When letter-sorted, all anagrams are same. If we ever meet a word the same letter-sorted form again, then it would overwrite the previous value with the same key in the map. So we’ll always have at maximum one word per letter-form.
+
+```javascript
+function aclean(arr) {
+  let map = new Map();
+
+  for (let word of arr) {
+    // Split the word by letters, sort them and join back
+    let sorted = word.toLowerCase().split('').sort().join(''); // (*)
+    
+    // Put the word into the map
+    map.set(sorted, word);
+  }
+  // Takes an iterable over map values and returns an array of them.
+  return Array.from(map.values());
+}
+```
+
+</details>
+
+<details><summary><b>Solution #2</b></summary>
+
+Use plain `object` instead of `Map`
+
+```javascript
+function aclean(arr) {
+  let obj = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    let sorted = arr[i].toLowerCase().split("").sort().join("");
+    obj[sorted] = arr[i];
+  }
+
+  return Object.values(obj);
+}
+```
+
 </details>
